@@ -39,3 +39,7 @@ luac.out
 *.x86_64
 *.hex
 
+# Custom added
+tmpSoftwareTests/
+*.bin
+*.backup.lua
