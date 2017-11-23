@@ -1,4 +1,4 @@
-dofile("credentials.lua")
+dofile("config.lua")
 
 function startup()
     if file.open("init.lua") == nil then
