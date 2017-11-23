@@ -20,10 +20,9 @@ function readTempAndHumid()
         jsonBody, 
         function(code, data) 
             print(data);
-    
-            -- 15 * 60 seconds sleep (15 minutes)
+
             print("Measurement successfull ... going to sleep");
-            node.dsleep(15 * 60 * 1000000);
+            node.dsleep(SLEEP_TIME);
         end
     )
 end
