@@ -1,4 +1,4 @@
-function readTempAndHumid()
+function readTempAndHumid(chipId, battery, brightness)
 
     --read dht21 from pin
     pinDHT21 = 4;
@@ -12,8 +12,6 @@ function readTempAndHumid()
         chipId,
         brightness
     );
-
-    
     
     http.post( SERVER_ENDPOINT, 
         "Content-Type: application/x-www-form-urlencoded\r\n",
@@ -28,14 +26,20 @@ function readTempAndHumid()
 end
 
 -- Get chipId.
-chipId = node.chipid();
+local chipId = node.chipid();
 
 -- Read battery life
 -- BUG: This does not work.
-battery = adc.readvdd33();
+local battery = adc.read(0)*4/978;
 
--- Read brightness over adc
-pinBrightness = 0;
-brightness = adc.read(pinBrightness);
+-- Read brightness
+local brightnessStatus = tsl2561.init(2, 1, tsl2561.ADDRESS_FLOAT, tsl2561.PACKAGE_T_FN_CL);
+if status == tsl2561.TSL2561_OK then
+    status = tsl2561.settiming(tsl2561.INTEGRATIONTIME_402MS, tsl2561.GAIN_1X);
+end
+if brightnessStatus == tsl2561.TSL2561_OK then
+    local lux = tsl2561.getlux();
+    readTempAndHumid(chipId, battery, lux);
+end
 
-readTempAndHumid();
+
