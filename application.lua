@@ -28,7 +28,7 @@ function sendData()
             print(data);
 
             print("Measurement successfull ... going to sleep");
-            --node.dsleep(SLEEP_TIME);
+            node.dsleep(SLEEP_TIME);
         end
     )
 end
