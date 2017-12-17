@@ -1,4 +1,4 @@
-dofile("config.lua")
+dofile("config.backup.lua")
 
 function startup()
     if file.open("init.lua") == nil then
