@@ -43,3 +43,5 @@ luac.out
 tmpSoftwareTests/
 *.bin
 *.backup.lua
+.idea/*
+*.xml
