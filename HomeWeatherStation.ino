@@ -76,15 +76,17 @@ void measure() {
     Serial.println("DHT22 could not be read.");
 
     if(isnan(temperature)) {
-      Serial.println("The temperature is not a number");
+      Serial.println("The temperature is NaN");
     }
     if(isnan(humidity)) {
-      Serial.println("The humidity is not a number");      
+      Serial.println("The humidity is NaN");      
     }
     
     return;
   } 
 
+  float lux = measureBrightness();
+  float batteryLife = measureBatteryLife();
   
   Serial.print(dht.getStatusString());
   Serial.print("\t");
@@ -109,6 +111,20 @@ float measureHumidity() {
 
 float measureTemperature() {
   return dht.getTemperature(); //Temperatur auslesen
+}
+
+/**
+ * TODO: Not yet implemented.
+ */
+float measureBrightness() {
+  return 0.0;
+}
+
+/**
+ * TODO: Not yet implemented.
+ */
+int measureBatteryLife() {
+  return 0;
 }
 
 void loop() 
